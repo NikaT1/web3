@@ -1,0 +1,75 @@
+.body {
+    color: #6d747f;
+    font-size: 26px;
+    font-family: "Open Sans", cursive;
+    background-color: #FFEBCD;
+}
+
+table {
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+    border-spacing: 10px;
+    table-layout: auto;
+}
+
+#body-table {
+    table-layout: fixed;
+    height: 80%;
+}
+
+#imagine {
+    width: 210px;
+    height: 210px;
+}
+
+.name-table {
+    background-color: #dab6ea;
+    width: 100%;
+    border-spacing: 7px;
+}
+
+.variant-table {
+    background-color: #f1d2ff;
+    width: 80%;
+}
+
+#head-table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+.button {
+    font-family: cursive;
+    font-weight: 700;
+    text-decoration: none;
+    padding: .8em 1em calc(.8em + 3px);
+    border-radius: 3px;
+    background: rgba(217, 182, 252, 0.76);
+    box-shadow: 0 -3px rgba(217, 182, 252, 0.76) inset;
+    transition: 0.2s;
+}
+
+.button:hover {
+    background: rgba(163, 113, 196, 0.73);
+}
+
+.button:active {
+    outline: none;
+    background: rgba(163, 113, 196, 0.73);
+    box-shadow: 0 3px rgba(163, 113, 196, 0.73) inset;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(206, 91, 238, 0.49);
+}
+
+::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px rgba(206, 91, 238, 0.49);
+}
+
+

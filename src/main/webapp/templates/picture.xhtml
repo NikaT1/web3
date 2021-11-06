@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<body>
+<ui:composition>
+    <h:outputStylesheet library="css" name="clock.css"/>
+    <div id="svg-picture">
+        <svg id="svg" width="210" height="210" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="180,100 100,140 100,100"
+                     class="svg-figure-color"
+                     stroke-width="2"></polygon>
+            <polygon points="100,20 180,20 180,100 100,100"
+                     class="svg-figure-color"
+                     stroke-width="2"></polygon>
+            <path d="M100,100 v-80 a80,80 0 0,0-80,80z"
+                  class="svg-figure-color"
+                  stroke-width="2"></path>
+            <line x1="100" y1="0" x2="100" y2="200" stroke-width="2"
+                  class="svg-line-color"></line>
+            <line x1="0" y1="100" x2="200" y2="100" stroke-width="2"
+                  class="svg-line-color"></line>
+            <line x1="97" y1="60" x2="103" y2="60" stroke-width="2"
+                  class="svg-line-color"></line>
+            <line x1="97" y1="20" x2="103" y2="20" stroke-width="2"
+                  class="svg-line-color"></line>
+            <line x1="97" y1="140" x2="103" y2="140" stroke-width="2"
+                  class="svg-line-color"></line>
+            <line x1="97" y1="180" x2="103" y2="180" stroke-width="2"
+                  class="svg-line-color"></line>
+            <line x1="60" y1="97" x2="60" y2="103" stroke-width="2"
+                  class="svg-line-color"></line>
+            <line x1="20" y1="97" x2="20" y2="103" stroke-width="2"
+                  class="svg-line-color"></line>
+            <line x1="140" y1="97" x2="140" y2="103" stroke-width="2"
+                  class="svg-line-color"></line>
+            <line x1="180" y1="97" x2="180" y2="103" stroke-width="2"
+                  class="svg-line-color"></line>
+            <line x1="100" y1="0" x2="95" y2="10" stroke-width="2"
+                  class="svg-line-color"></line>
+            <line x1="100" y1="0" x2="105" y2="10" stroke-width="2"
+                  class="svg-line-color"></line>
+            <line x1="200" y1="100" x2="190" y2="105" stroke-width="2"
+                  class="svg-line-color"></line>
+            <line x1="200" y1="100" x2="190" y2="95" stroke-width="2"
+                  class="svg-line-color"></line>
+            <text x="30" y="92" font-size="15" class="svg-text">-R/2</text>
+            <text x="6" y="92" font-size="15" class="svg-text">-R</text>
+            <text x="107" y="30" font-size="15" class="svg-text">R</text>
+            <text x="107" y="70" font-size="15" class="svg-text">R/2</text>
+            <text x="110" y="10" font-size="15" class="svg-text">y</text>
+            <text x="130" y="92" font-size="15" class="svg-text">R/2</text>
+            <text x="170" y="92" font-size="15" class="svg-text">R</text>
+            <text x="190" y="92" font-size="15" class="svg-text">x</text>
+            <text x="107" y="140" font-size="15" class="svg-text">-R/2</text>
+            <text x="107" y="180" font-size="15" class="svg-text">-R</text>
+            <circle class="coord" r="3"
+                    cx="1"
+                    cy="1">
+            </circle>
+        </svg>
+    </div>
+</ui:composition>
+</body>
+</html>

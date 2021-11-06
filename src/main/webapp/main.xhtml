@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:body>
+        <ui:composition template="templates/template.xhtml">
+            <ui:define name="content">
+                <table id="body-table" class="body-table">
+                    <tr class="background-with-shadow" id="background-tr">
+                        <td>
+                            <table class="background" id="background-table">
+                                <tr>
+                                    <td>
+                                        <ui:include src="templates/picture.xhtml"/>
+                                    </td>
+                                    <td>
+                                        <img id="imagine3" class="imagine3" src="resources/images/pic3.png"
+                                             alt="Милый хомячок"/>
+                                    </td>
+                                    <td rowspan="2" class="background" id="result-td">
+                                        <div id="result-div">
+                                            <ui:include src="templates/table.xhtml"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <table id="numbers-table" class="background">
+                                            <tr>
+                                                <td>X:</td>
+                                                <td>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Y:</td>
+
+                                            </tr>
+                                            <tr class="numbers">
+                                                <td>R:</td>
+                                                <td>
+                                                    <table id="r-table">
+                                                        <tr>
+                                                            <td colspan="2">
+                                                                <button class="button" id="submit">
+                                                                    результат
+                                                                </button>
+                                                            </td>
+                                                            <td colspan="3">
+                                                                <button class="button" id="reset">
+                                                                    очистить
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <h:button class="button" outcome="toIndex" value="Назад"/>
+                        </td>
+                    </tr>
+                </table>
+            </ui:define>
+            <ui:define name="button">
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</f:view>
+</html>
