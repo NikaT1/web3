@@ -7,35 +7,32 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <body>
 <ui:composition>
+    <h:outputScript library="js" name="jQuery.js"/>
+    <h:outputScript library="js" name="clock.js"/>
     <h:outputStylesheet library="css" name="clock.css"/>
-    <div class="clock">
-        <div class="hour">
-            <div class="hr" id="hr"></div>
-        </div>
-        <div class="min">
-            <div class="mn" id="mn"></div>
-        </div>
-        <div class="sec">
-            <div class="sc" id="sc"></div>
-        </div>
-    </div>
-    <script type="text/javascript">
-        const deg = 6;
-        const hr = document.querySelector('#hr');
-        const mn = document.querySelector('#mn');
-        const sc = document.querySelector('#sc');
-        setInterval(() => {
-
-            let day = new Date();
-            let hh = day.getHours() * 30;
-            let mm = day.getMinutes() * deg;
-            let ss = day.getSeconds() * deg;
-
-            hr.style.transform = `rotateZ(${(hh) + (mm / 12)}deg)`;
-            mn.style.transform = `rotateZ(${mm}deg)`;
-            sc.style.transform = `rotateZ(${ss}deg)`;
-        })
-    </script>
+    <table id="content">
+        <tr>
+            <td>
+                <div class="clock">
+                    <div class="hour-part">
+                        <div class="hour" id="hour"></div>
+                    </div>
+                    <div class="min-part">
+                        <div class="min" id="min"></div>
+                    </div>
+                    <div class="sec-part">
+                        <div class="sec" id="sec"></div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="date">
+                </div>
+            </td>
+        </tr>
+    </table>
 </ui:composition>
 </body>
 </html>

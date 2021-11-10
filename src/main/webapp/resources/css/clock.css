@@ -1,27 +1,24 @@
 {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
-.clock
-{
-    width:350px;
+#date{
+    text-align: center;
+}
+
+.clock {
+    width: 350px;
     height: 350px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url(https://user-images.githubusercontent.com/42720361/80282419-a293a400-8711-11ea-81c7-1c44e2980db2.png);
+    background: url("#{resource['images/clock.png']}");
     background-size: cover;
-    border: 16px solid #091921;
+    border: 16px solid #320f41;
     border-radius: 50%;
-    box-shadow: 0 -15px 15px rgba(255,255,255,0.05),
-    inset 0 -15px 15px rgba(255,255,255,0.05),
-    0 15px 15px rgba(0,0,0,0.3),
-    inset 0 15px 15px rgba(0,0,0,0.3);
 }
-.clock:before
-{
+
+.clock:before {
     content: '';
     position: absolute;
     width: 15px;
@@ -30,62 +27,62 @@
     border-radius: 50%;
     z-index: 10000;
 }
-.clock .hour,
-.clock .min,
-.clock .sec
-{
+
+.clock .hour-part,
+.clock .min-part,
+.clock .sec-part {
     position: absolute;
 }
-.clock .hour, .hr
-{
+
+.clock .hour-part, .hour {
     width: 160px;
     height: 160px;
 }
-.clock .min, .mn
-{
+
+.clock .min-part, .min {
     width: 190px;
     height: 190px;
 }
-.clock .sec, .sc
-{
+
+.clock .sec-part, .sec {
     width: 230px;
     height: 230px;
 }
-.hr, .mn, .sc
-{
+
+.hour, .min, .sec {
     display: flex;
     justify-content: center;
     /*align-items: center;*/
     position: absolute;
     border-radius: 50%;
 }
-.hr:before
-{
+
+.hour:before {
     content: '';
     position: absolute;
     width: 8px;
     height: 80px;
-    background: #ff105e;
+    background: #8f10ff;
     z-index: 10;
     border-radius: 6px 6px 0 0;
 }
-.mn:before
-{
+
+.min:before {
     content: '';
     position: absolute;
     width: 4px;
     height: 90px;
-    background: #fff;
+    background: #b78edd;
     z-index: 11;
     border-radius: 6px 6px 0 0;
 }
-.sc:before
-{
+
+.sec:before {
     content: '';
     position: absolute;
     width: 2px;
     height: 150px;
-    background: #ff105e;
+    background: #9d3ee0;
     z-index: 12;
     border-radius: 6px 6px 0 0;
 }
