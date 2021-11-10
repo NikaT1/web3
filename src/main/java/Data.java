@@ -65,15 +65,15 @@ public class Data implements Serializable {
     }
 
     private boolean rectangle(double x, double y, double r) {
-        return x >= 0 && x <= r && y >= 0 && y <= r;
+        return x <= 0 && x >= -r && y <= 0 && y >= -r;
     }
 
     private boolean triangle(double x, double y, double r) {
-        return x >= 0 && x <= r && y <= 0 && y >= x / 2 - r / 2;
+        return x >= 0 && x <= r && y >= 0 && y <= r - x;
     }
 
     private boolean circle(double x, double y, double r) {
-        return x <= 0 && x >= -r && y >= 0 && y * y <= -x * x + r * r;
+        return x >= 0 && x <= r && y <= 0 && y * y >= -x * x + r * r;
     }
 
     public void checkAll() {

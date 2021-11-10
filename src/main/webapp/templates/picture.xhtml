@@ -7,16 +7,15 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <body>
 <ui:composition>
-    <h:outputStylesheet library="css" name="clock.css"/>
     <div id="svg-picture">
         <svg id="svg" width="210" height="210" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="180,100 100,140 100,100"
+            <polygon points="180,100 100,20 100,100"
                      class="svg-figure-color"
                      stroke-width="2"></polygon>
-            <polygon points="100,20 180,20 180,100 100,100"
+            <polygon points="20,100 20,180 100,180 100,100"
                      class="svg-figure-color"
                      stroke-width="2"></polygon>
-            <path d="M100,100 v-80 a80,80 0 0,0-80,80z"
+            <path d="M100,100 v+80 a80,80 0 0,0 80,-80z"
                   class="svg-figure-color"
                   stroke-width="2"></path>
             <line x1="100" y1="0" x2="100" y2="200" stroke-width="2"
@@ -57,10 +56,6 @@
             <text x="190" y="92" font-size="15" class="svg-text">x</text>
             <text x="107" y="140" font-size="15" class="svg-text">-R/2</text>
             <text x="107" y="180" font-size="15" class="svg-text">-R</text>
-            <circle class="coord" r="3"
-                    cx="1"
-                    cy="1">
-            </circle>
         </svg>
     </div>
 </ui:composition>

@@ -1,7 +1,10 @@
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.EntityTransaction;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +17,10 @@ public class DataBeans implements Serializable {
     private EntityTransaction trans;
     private Data newData;
 
-    public DataBeans() {
+    public DataBeans() throws IOException {
         connectToDB();
         firstLoad();
-        newData = new Data();
+        newData = new Data();;
     }
 
     private void connectToDB() {
@@ -26,7 +29,7 @@ public class DataBeans implements Serializable {
         trans = entityManager.getTransaction();
     }
 
-    private void firstLoad() {
+    private void firstLoad() throws IOException {
         array = new ArrayList<>();
         try {
             trans.begin();
@@ -36,12 +39,12 @@ public class DataBeans implements Serializable {
             if (trans.isActive()) {
                 trans.rollback();
             }
-            throw exception;
+            ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+            context.redirect(context.getRequestContextPath() + "/error.jsf");
         }
-
     }
 
-    public String addData() {
+    public void addData() throws IOException {
         try {
             trans.begin();
             newData.checkAll();
@@ -53,12 +56,12 @@ public class DataBeans implements Serializable {
             if (trans.isActive()) {
                 trans.rollback();
             }
-            throw exception;
+            ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+            context.redirect(context.getRequestContextPath() + "/error.jsf");
         }
-        return "redirect";
     }
 
-    public String clear() {
+    public void clear() throws IOException {
         try {
             trans.begin();
             entityManager.createQuery("DELETE FROM Data").executeUpdate();
@@ -68,9 +71,9 @@ public class DataBeans implements Serializable {
             if (trans.isActive()) {
                 trans.rollback();
             }
-            throw exception;
+            ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+            context.redirect(context.getRequestContextPath() + "/error.jsf");
         }
-        return "redirect";
     }
 
     public List<Data> getArray() {

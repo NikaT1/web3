@@ -3,20 +3,6 @@ $(function () {
     let param_y;
     let param_r;
 
-    document.querySelectorAll('input[name="rCheckBox"]').forEach(x => x.addEventListener("change", (function () {
-                if (x.checked) {
-                    let boxes = document.querySelectorAll('input[name="rCheckBox"]');
-                    for (let box of boxes) {
-                        if (x.value != box.value) {
-                            box.checked = false;
-                        }
-                    }
-                } else x.checked = true;
-            }
-        )
-        )
-    );
-
     document.querySelectorAll('.x-button').forEach(x => x.addEventListener("mousedown", (function () {
                 param_x.classList.remove("x-button-choose");
                 param_x.classList.add("x-button");
@@ -30,32 +16,26 @@ $(function () {
     );
 
     document.querySelector("input[type=text]").addEventListener('focus', function (e) {
-        document.querySelector('#inputX').classList.remove('errorY');
+        document.getElementById('main-f:inputY').classList.remove('errorY');
     });
-
-    function clear() {
-        document.getElementById('result-table').getElementsByTagName("tbody")[0].innerHTML = document.getElementById("result-table").rows[0].innerHTML;
-        document.getElementById("inputX").value = "";
-        document.querySelector("#inputX").classList.remove('errorY');
-        document.querySelectorAll('input[name="rCheckBox"]').forEach(x => x.checked = false);
-        document.getElementById('defaultBox').checked = true;
-        document.getElementById('selectY').selectedIndex = 0;
-    }
 
     document.querySelector("svg").addEventListener('mousedown', function (e) {
         if (checkR()) {
             param_x = (e.offsetX - 100) / 80 * param_r;
             param_y = (100 - e.offsetY) / 80 * param_r;
-            ///sssssss
+            document.getElementById('main-f:inputY').value = param_y;
+            document.getElementById("main-f:inputX").value = param_x;
+            document.getElementById("main-f:submit").click();
         } else {
             alert('Не выбран радиус R!');
         }
     });
-/*
-    document.querySelectorAll('input[name="rCheckBox"]').forEach(r => r.addEventListener('change', function () {
+
+    document.getElementById("main-f:inputR").addEventListener('change', function () {
         let x, y;
         checkR();
-        document.querySelectorAll('circle').forEach(point => {
+        alert('fffff');
+        /*document.querySelectorAll('circle').forEach(point => {
             x = point.getAttribute('data-x');
             y = point.getAttribute('data-y');
             r = point.getAttribute('data-r');
@@ -70,9 +50,9 @@ $(function () {
             }
             point.setAttribute('cx', x + 'px');
             point.setAttribute('cy', y + 'px');
-        });
-    }))
-*/
+        });*/
+    });
+
     function init() {
         param_x = document.getElementById('main-f:x-button-default');
         param_x.classList.add("x-button-choose");
@@ -80,46 +60,64 @@ $(function () {
         document.getElementById("main-f:inputX").value = param_x.innerText;
     }
 
-    function checkR() {
-        let boxes = document.querySelectorAll('input[name="rCheckBox"]');
-        for (let elem in boxes) {
-            if (boxes[elem].checked)
-                param_r = boxes[elem].value;
-        }
-        return true;
+    function checkX() {
+        let arrayX = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
+        let x = document.getElementById("main-f:inputX").value;
+        if (!isNaN(parseInt(x)) && isFinite(parseInt(x)) && arrayX.includes(parseInt(x))) {
+            param_x = parseInt(x);
+            return true;
+        } else return false;
     }
 
-    /* document.querySelector("#submit").addEventListener('click', function (e) {
-         e.preventDefault();
+    function checkR() {
+        let arrayR = [1, 2, 3, 4, 5];
+        let select = document.getElementById("main-f:inputR");
+        let r = select.options[select.selectedIndex].value;
+        if (!isNaN(parseInt(r)) && isFinite(parseInt(r)) && arrayR.includes(parseInt(r))) {
+            param_r = parseInt(r);
+            return true;
+        } else return false;
+    }
 
-         function checkX() {
-             let line = document.querySelector("#inputX").value;
-             line = line.replace(",", ".");
-             let regex = /^[-]?[0-9]{1,17}([.][0-9]{1,17}|[0-9]{0,17})$/;
-             let OK = regex.exec(line);
-             let x = parseFloat(line);
-             const MAX = 5;
-             const MIN = -5;
-             if (!isNaN(x) && x > MIN && x < MAX && OK) {
-                 param_x = x;
-                 document.querySelector('#inputX').classList.remove('errorY');
-                 return true;
-             } else {
-                 return false;
-             }
-         }
+    function checkY() {
+        let line = document.getElementById('main-f:inputY').value;
+        line = line.replace(",", ".");
+        let regex = /^[-]?[0-9]{1,17}([.][0-9]{1,17}|[0-9]{0,17})$/;
+        let OK = regex.exec(line);
+        const MAX = 5;
+        const MIN = -3;
+        if (OK && !isNaN(parseFloat(line)) && isFinite(parseFloat(line)) && parseFloat(line) > MIN && parseFloat(line) < MAX) {
+            param_y = parseFloat(line);
+            return true;
+        } else {
+            document.getElementById('main-f:inputY').classList.add('errorY');
+            return false;
+        }
+    }
 
-         function checkY() {
-             let select = document.getElementById('selectY');
-             param_y = select.options[select.selectedIndex].value;
-             return true;
-         }
+    function checkAll() {
+        return checkY() && checkX() && checkR();
+    }
 
-         if (checkY() && checkX() && checkR()) {
-             //dddddddddd
-         } else {
-             document.querySelector('#inputX').classList.add('errorY');
-         }
-     })*/
+    function drawAll(){
+        //ggggfffffgggggggggg
+    }
+
+    function drawPoint(){
+        ///cfcccccccccccccccccccccccccccc
+    }
+
+    document.getElementById("main-f:reset").addEventListener('click', function (e) {
+        document.querySelectorAll(".coord").forEach(x => x.remove());
+    });
+
+    document.getElementById("main-f:submit").addEventListener('click', function (e) {
+        if (checkAll()) {
+            drawPoint();
+        } else {
+            e.preventDefault();
+        }
+    });
     init();
+    drawAll();
 });

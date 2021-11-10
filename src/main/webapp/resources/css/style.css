@@ -220,9 +220,14 @@ body .ui-widget.x-button:active, .button:active {
     height: 300px;
 }
 
-.coord {
-    stroke: rgb(122, 3, 171);
-    fill: rgb(122, 3, 171);
+.good-coord {
+    stroke: rgb(98, 236, 151);
+    fill: rgb(98, 236, 151);
+}
+
+.bad-coord {
+    stroke: rgb(221, 76, 122);
+    fill: rgb(221, 76, 122);
 }
 
 .old-coord {

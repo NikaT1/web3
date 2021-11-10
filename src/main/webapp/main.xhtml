@@ -5,7 +5,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 
 </h:head>
@@ -82,8 +83,8 @@
                                                 <tr>
                                                     <td>Y:</td>
                                                     <td colspan="4">
-                                                        <h:inputText id="inputY" maxlength="17" autocomplete="off"
-                                                                     placeholder="Введите число: (-3; 5)"
+                                                        <h:inputText id="inputY" maxlength="17"
+                                                                     a:placeholder="Введите число: (-3; 5)"
                                                                      value="#{dataBeans.newData.y}">
                                                             <f:validateRequired/>
                                                             <f:validateDoubleRange minimum="-3" maximum="5"/>
@@ -109,12 +110,12 @@
                                                                   value="Назад"/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <h:commandButton type="submit" styleClass="button"
+                                                        <h:commandButton id="submit" type="submit" styleClass="button"
                                                                          value="Результат"
                                                                          action="#{dataBeans.addData}"/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <h:commandButton styleClass="button"
+                                                        <h:commandButton styleClass="button" id="reset"
                                                                          value="Очистить"
                                                                          action="#{dataBeans.clear}"/>
                                                     </td>
