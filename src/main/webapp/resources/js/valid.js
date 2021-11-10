@@ -42,15 +42,6 @@ $(function () {
         document.getElementById('selectY').selectedIndex = 0;
     }
 
-    // document.querySelector('#changeColor').addEventListener('click', function (e) {
-    //     e.preventDefault();
-    //     if (document.querySelector("body").classList.contains('dark-body')) {
-    //         sendRequest("color", "0");
-    //     } else {
-    //         sendRequest("color", "1");
-    //     }
-    // });
-
     document.querySelector("svg").addEventListener('mousedown', function (e) {
         if (checkR()) {
             param_x = (e.offsetX - 100) / 80 * param_r;
