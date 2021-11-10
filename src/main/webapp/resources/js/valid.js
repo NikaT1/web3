@@ -23,8 +23,8 @@ $(function () {
         if (checkR()) {
             param_x = (e.offsetX - 100) / 80 * param_r;
             param_y = (100 - e.offsetY) / 80 * param_r;
-            document.getElementById('main-f:inputY').value = param_y;
-            document.getElementById("main-f:inputX").value = param_x;
+            document.getElementById('main-f:inputY').value = String(param_y).substr(0,4);
+            document.getElementById("main-f:inputX").value = String(param_x).substr(0,4);
             document.getElementById("main-f:submit").click();
         } else {
             alert('Не выбран радиус R!');
@@ -32,16 +32,15 @@ $(function () {
     });
 
     document.getElementById("main-f:inputR").addEventListener('change', function () {
-        let x, y;
+        let x, y, r;
         checkR();
-        alert('fffff');
-        /*document.querySelectorAll('circle').forEach(point => {
+        document.querySelectorAll('.coord').forEach(point => {
             x = point.getAttribute('data-x');
             y = point.getAttribute('data-y');
             r = point.getAttribute('data-r');
             x = 80 * x / param_r + 100;
             y = -80 * y / param_r + 100;
-            if (r == param_r && point.classList.contains('old-coord')) {
+            if (r === param_r && point.classList.contains('old-coord')) {
                 point.classList.remove("old-coord");
                 point.classList.add("coord");
             } else if (r != param_r && point.classList.contains("coord")) {
@@ -50,13 +49,15 @@ $(function () {
             }
             point.setAttribute('cx', x + 'px');
             point.setAttribute('cy', y + 'px');
-        });*/
+        });
     });
 
     function init() {
         param_x = document.getElementById('main-f:x-button-default');
-        param_x.classList.add("x-button-choose");
-        param_x.classList.remove("x-button");
+        if (!param_x.classList.contains("x-button-choose")) {
+            param_x.classList.add("x-button-choose");
+            param_x.classList.remove("x-button");
+        }
         document.getElementById("main-f:inputX").value = param_x.innerText;
     }
 
@@ -87,7 +88,7 @@ $(function () {
         const MAX = 5;
         const MIN = -3;
         if (OK && !isNaN(parseFloat(line)) && isFinite(parseFloat(line)) && parseFloat(line) > MIN && parseFloat(line) < MAX) {
-            param_y = parseFloat(line);
+            param_y = parseFloat(line.substr(0,3));
             return true;
         } else {
             document.getElementById('main-f:inputY').classList.add('errorY');
@@ -99,16 +100,39 @@ $(function () {
         return checkY() && checkX() && checkR();
     }
 
-    function drawAll(){
+    function rectangle() {
+        return param_x <= 0 && param_x >= -param_r && param_y <= 0 && param_y >= -param_r;
+    }
+
+    function triangle() {
+        return param_x >= 0 && param_x <= param_r && param_y >= 0 && param_y <= param_r - param_x;
+    }
+
+    function circle() {
+        return param_x >= 0 && param_x <= param_r && param_y <= 0 && param_y * param_y >= -param_x * param_x + param_r * param_r;
+    }
+
+    function drawAll() {
         //ggggfffffgggggggggg
     }
 
-    function drawPoint(){
-        ///cfcccccccccccccccccccccccccccc
+    function drawPoint() {
+        let point = document.createElementNS("http://www.w3.org/2000/svg",'circle');
+        point.setAttribute('cx', param_r/80*param_x+100);
+        point.setAttribute('cy', -param_r/80*param_y+100);
+        point.setAttribute('r', 3);
+        point.setAttribute('data-x', param_x);
+        point.setAttribute('data-y', param_y);
+        if (rectangle() || triangle() || circle())
+            point.classList.add("good-coord");
+        else point.classList.add("bad-coord");
+        document.getElementById("svg").appendChild(point);
     }
 
     document.getElementById("main-f:reset").addEventListener('click', function (e) {
-        document.querySelectorAll(".coord").forEach(x => x.remove());
+        document.querySelectorAll(".good-coord").forEach(x => x.remove());
+        document.querySelectorAll(".bad-coord").forEach(x => x.remove());
+        document.querySelectorAll(".old-coord").forEach(x => x.remove());
     });
 
     document.getElementById("main-f:submit").addEventListener('click', function (e) {

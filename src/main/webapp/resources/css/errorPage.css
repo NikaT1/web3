@@ -10,7 +10,7 @@ body {
     margin: auto;
     display: grid;
 }
-#imagine {
+.imagine {
     alignment: center;
     width: 100%;
     height: 100%;
