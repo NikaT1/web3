@@ -6,6 +6,29 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:outputLabel value="Hello, world"/>
+    <h:panelGroup>
+        <h:dataTable styleClass="result-table" value="#{dataBeans.array}" var="data" width="100%">
+            <h:column>
+                <f:facet name="header">Время</f:facet>
+                0
+            </h:column>
+            <h:column>
+                <f:facet name="header">X</f:facet>
+                #{data.x}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Y</f:facet>
+                #{data.y}
+            </h:column>
+            <h:column>
+                <f:facet name="header">R</f:facet>
+                #{data.r}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Результат</f:facet>
+                #{data.answer}
+            </h:column>
+        </h:dataTable>
+    </h:panelGroup>
 </f:view>
 </html>

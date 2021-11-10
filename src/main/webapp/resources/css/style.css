@@ -35,6 +35,7 @@ table {
 #body-table {
     table-layout: fixed;
     height: 80%;
+    width: 100%;
 }
 
 #imagine {
@@ -86,6 +87,7 @@ input[type='text'] {
 
 .body-table {
     background-color: #f1d2ff;
+    width: 80%;
 }
 
 .dark-body-table {
@@ -148,7 +150,7 @@ select {
     vertical-align: middle;
 }
 
-.button {
+body .ui-widget.x-button, .button {
     font-family: cursive;
     font-weight: 700;
     text-decoration: none;
@@ -157,16 +159,31 @@ select {
     background: rgba(217, 182, 252, 0.76);
     box-shadow: 0 -3px rgba(217, 182, 252, 0.76) inset;
     transition: 0.2s;
+    color: black;
 }
 
-.button:hover {
+body .ui-widget.x-button-choose{
     background: rgba(163, 113, 196, 0.73);
+    font-family: cursive;
+    font-weight: 700;
+    text-decoration: none;
+    padding: .8em 1em calc(.8em + 3px);
+    border-radius: 3px;
+    box-shadow: 0 -3px rgba(217, 182, 252, 0.76) inset;
+    transition: 0.2s;
+    color: black;
 }
 
-.button:active {
+body .ui-widget.x-button:hover, .button:hover {
+    background: rgba(163, 113, 196, 0.73);
+    text-decoration: none;
+}
+
+body .ui-widget.x-button:active, .button:active {
     outline: none;
     background: rgba(163, 113, 196, 0.73);
     box-shadow: 0 3px rgba(163, 113, 196, 0.73) inset;
+    text-decoration: none;
 }
 
 .result-style tbody td {
@@ -202,7 +219,7 @@ select {
     font-weight: bold;
 }
 
-#result-table {
+.result-table {
     border-collapse: collapse;
     text-align: center;
     border: 4px solid rgba(217, 185, 230, 0.6);
@@ -210,6 +227,8 @@ select {
     width: 100%;
     table-layout: fixed;
 }
+
+
 
 #r-table {
     padding: 0;

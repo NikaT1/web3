@@ -6,9 +6,11 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <h:outputStylesheet name="style.css" library="css" />
+    <h:outputScript library="js" name="valid.js"/>
+    <h:outputScript library="js" name="jQuery.js"/>
 </h:head>
 <h:body class = "body">
+    <h:outputStylesheet name="style.css" library="css" />
     <div id="page">
         <div id="header">
             <ui:insert name="header">

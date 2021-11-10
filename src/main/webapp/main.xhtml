@@ -4,7 +4,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
 <f:view>
     <h:body>
         <ui:composition template="templates/template.xhtml">
@@ -12,58 +16,116 @@
                 <table id="body-table" class="body-table">
                     <tr class="background-with-shadow" id="background-tr">
                         <td>
-                            <table class="background" id="background-table">
-                                <tr>
-                                    <td>
-                                        <ui:include src="templates/picture.xhtml"/>
-                                    </td>
-                                    <td>
-                                        <img id="imagine3" class="imagine3" src="resources/images/pic3.png"
-                                             alt="Милый хомячок"/>
-                                    </td>
-                                    <td rowspan="2" class="background" id="result-td">
-                                        <div id="result-div">
-                                            <ui:include src="templates/table.xhtml"/>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <table id="numbers-table" class="background">
-                                            <tr>
-                                                <td>X:</td>
-                                                <td>
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Y:</td>
-
-                                            </tr>
-                                            <tr class="numbers">
-                                                <td>R:</td>
-                                                <td>
-                                                    <table id="r-table">
-                                                        <tr>
-                                                            <td colspan="2">
-                                                                <button class="button" id="submit">
-                                                                    результат
-                                                                </button>
-                                                            </td>
-                                                            <td colspan="3">
-                                                                <button class="button" id="reset">
-                                                                    очистить
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                            <h:button class="button" outcome="toIndex" value="Назад"/>
+                            <h:form id="main-f">
+                                <table class="background" id="background-table">
+                                    <tr>
+                                        <td>
+                                            <ui:include src="templates/picture.xhtml"/>
+                                        </td>
+                                        <td>
+                                            <img id="imagine3" class="imagine3" src="resources/images/pic3.png"
+                                                 alt="Милый хомячок"/>
+                                        </td>
+                                        <td rowspan="2" class="background" id="result-td">
+                                            <div id="result-div">
+                                                <ui:include src="templates/table.xhtml"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <table id="numbers-table" class="background">
+                                                <tr>
+                                                    <td>X:</td>
+                                                    <td>
+                                                        <p:commandLink id="x-button-default" class="x-button"
+                                                                       type="button"
+                                                                       value="-4"></p:commandLink>
+                                                    </td>
+                                                    <td>
+                                                        <p:commandLink class="x-button" type="button"
+                                                                       value="-3"></p:commandLink>
+                                                    </td>
+                                                    <td>
+                                                        <p:commandLink class="x-button" type="button"
+                                                                       value="-2"></p:commandLink>
+                                                    </td>
+                                                    <td>
+                                                        <p:commandLink class="x-button" type="button"
+                                                                       value="-1"></p:commandLink>
+                                                    </td>
+                                                    <td>
+                                                        <p:commandLink class="x-button" type="button"
+                                                                       value="0"></p:commandLink>
+                                                    </td>
+                                                    <td>
+                                                        <p:commandLink class="x-button" type="button"
+                                                                       value="1"></p:commandLink>
+                                                    </td>
+                                                    <td>
+                                                        <p:commandLink class="x-button" type="button"
+                                                                       value="2"></p:commandLink>
+                                                    </td>
+                                                    <td>
+                                                        <p:commandLink class="x-button" type="button"
+                                                                       value="3"></p:commandLink>
+                                                    </td>
+                                                    <td>
+                                                        <p:commandLink class="x-button" type="button"
+                                                                       value="4"></p:commandLink>
+                                                    </td>
+                                                    <h:inputHidden value="#{dataBeans.newData.x}" id="inputX">
+                                                        <f:validateRequired/>
+                                                        <f:validateLongRange minimum="-4" maximum="4"/>
+                                                    </h:inputHidden>
+                                                </tr>
+                                                <tr>
+                                                    <td>Y:</td>
+                                                    <td colspan="4">
+                                                        <h:inputText id="inputY" maxlength="17" autocomplete="off"
+                                                                     placeholder="Введите число: (-3; 5)"
+                                                                     value="#{dataBeans.newData.y}">
+                                                            <f:validateRequired/>
+                                                            <f:validateDoubleRange minimum="-3" maximum="5"/>
+                                                        </h:inputText>
+                                                    </td>
+                                                </tr>
+                                                <tr class="numbers">
+                                                    <td>R:</td>
+                                                    <td colspan="4">
+                                                        <h:selectOneMenu value="#{dataBeans.newData.r}" id="inputR">
+                                                            <f:selectItem itemValue="1" itemLabel="1"/>
+                                                            <f:selectItem itemValue="2" itemLabel="2"/>
+                                                            <f:selectItem itemValue="3" itemLabel="3"/>
+                                                            <f:selectItem itemValue="4" itemLabel="4"/>
+                                                            <f:selectItem itemValue="5" itemLabel="5"/>
+                                                            <f:validateRequired/>
+                                                        </h:selectOneMenu>
+                                                    </td>
+                                                    <td colspan="4">
+                                                        <table id="r-table">
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <h:commandButton type="submit" styleClass="button"
+                                                                                     value="Результат"
+                                                                                     action="#{dataBeans.addData}"/>
+                                                                </td>
+                                                                <td colspan="3">
+                                                                    <h:commandButton styleClass="button"
+                                                                                     value="Очистить"
+                                                                                     action="#{dataBeans.clear}"/>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <h:button class="button" outcome="toIndex"
+                                                      value="Назад"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </h:form>
                         </td>
                     </tr>
                 </table>
