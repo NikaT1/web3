@@ -96,7 +96,7 @@ input[type='text'] {
 
 #numbers-table {
     padding: 0;
-    margin: 0;
+    margin: 10px;
     width: 80%;
 }
 
@@ -162,6 +162,11 @@ body .ui-widget.x-button, .button {
     color: black;
 }
 
+body .ui-widget.x-button{
+    width: 20px;
+    height: 30px;
+}
+
 body .ui-widget.x-button-choose{
     background: rgba(163, 113, 196, 0.73);
     font-family: cursive;
@@ -186,13 +191,13 @@ body .ui-widget.x-button:active, .button:active {
     text-decoration: none;
 }
 
-.result-style tbody td {
+.result-table tbody tr td {
     border-collapse: collapse;
     border: 4px solid rgba(217, 185, 230, 0.6);
     font-size: 20px;
 }
 
-.result-style tbody th {
+.result-table thead tr th {
     border-collapse: collapse;
     border: 4px solid rgba(217, 185, 230, 0.6);
     font-size: 20px;
@@ -297,4 +302,8 @@ body .ui-widget.x-button:active, .button:active {
 .dark-svg-text {
     stroke: rgb(214, 196, 224);
     fill: rgb(214, 196, 224);
+}
+
+.td-button-return{
+    text-align: left;
 }

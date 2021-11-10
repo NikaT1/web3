@@ -35,7 +35,7 @@
                                     <tr>
                                         <td colspan="2">
                                             <table id="numbers-table" class="background">
-                                                <tr>
+                                                <tr class="numbers">
                                                     <td>X:</td>
                                                     <td>
                                                         <p:commandLink id="x-button-default" class="x-button"
@@ -90,7 +90,7 @@
                                                         </h:inputText>
                                                     </td>
                                                 </tr>
-                                                <tr class="numbers">
+                                                <tr>
                                                     <td>R:</td>
                                                     <td colspan="4">
                                                         <h:selectOneMenu value="#{dataBeans.newData.r}" id="inputR">
@@ -102,26 +102,24 @@
                                                             <f:validateRequired/>
                                                         </h:selectOneMenu>
                                                     </td>
-                                                    <td colspan="4">
-                                                        <table id="r-table">
-                                                            <tr>
-                                                                <td colspan="2">
-                                                                    <h:commandButton type="submit" styleClass="button"
-                                                                                     value="Результат"
-                                                                                     action="#{dataBeans.addData}"/>
-                                                                </td>
-                                                                <td colspan="3">
-                                                                    <h:commandButton styleClass="button"
-                                                                                     value="Очистить"
-                                                                                     action="#{dataBeans.clear}"/>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
+                                                </tr>
+                                                <tr>
+                                                    <td class="td-button-return" colspan="6">
+                                                        <h:button class="button" outcome="toIndex"
+                                                                  value="Назад"/>
+                                                    </td>
+                                                    <td colspan="2">
+                                                        <h:commandButton type="submit" styleClass="button"
+                                                                         value="Результат"
+                                                                         action="#{dataBeans.addData}"/>
+                                                    </td>
+                                                    <td colspan="2">
+                                                        <h:commandButton styleClass="button"
+                                                                         value="Очистить"
+                                                                         action="#{dataBeans.clear}"/>
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <h:button class="button" outcome="toIndex"
-                                                      value="Назад"/>
                                         </td>
                                     </tr>
                                 </table>
