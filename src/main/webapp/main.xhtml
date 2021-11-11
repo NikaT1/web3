@@ -7,14 +7,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-<h:head>
-    <h:outputScript library="js" name="valid.js"/>
-    <h:outputScript library="js" name="jQuery.js"/>
-</h:head>
 <f:view>
     <h:body>
         <ui:composition template="templates/template.xhtml">
             <ui:define name="content">
+                <h:outputScript library="js" name="valid.js"/>
+                <h:outputScript library="js" name="jQuery.js"/>
                 <table id="body-table" class="body-table">
                     <tr class="background-with-shadow" id="background-tr">
                         <td>
@@ -113,12 +111,16 @@
                                                     <td colspan="2">
                                                         <h:commandButton id="submit" type="submit" styleClass="button"
                                                                          value="Результат"
-                                                                         action="#{dataBeans.addData}"/>
+                                                                         action="#{dataBeans.addData}">
+                                                        <f:ajax execute="main-f" render="panel"/>
+                                                        </h:commandButton>
                                                     </td>
                                                     <td colspan="2">
                                                         <h:commandButton styleClass="button" id="reset"
                                                                          value="Очистить"
-                                                                         action="#{dataBeans.clear}"/>
+                                                                         action="#{dataBeans.clear}">
+                                                            <f:ajax execute="main-f" render="panel"/>
+                                                        </h:commandButton>
                                                     </td>
                                                 </tr>
                                             </table>

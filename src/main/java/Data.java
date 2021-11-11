@@ -5,26 +5,26 @@ import java.io.Serializable;
 @Entity
 public class Data implements Serializable {
     @Id
-    @SequenceGenerator( name = "idSequence", sequenceName = "idSequence", allocationSize = 1, initialValue = 1 )
-    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "idSequence")
+    @SequenceGenerator(name = "idSequence", sequenceName = "idSequence", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idSequence")
     private int id;
     private static final long serialVersionUID = 1L;
-    private double x;
-    private double y;
-    private double r;
+    private Double x;
+    private Double y;
+    private Double r;
     private String time;
     private String answer;
     private double scriptTime;
 
-    public double getX() {
+    public Double getX() {
         return x;
     }
 
-    public double getY() {
+    public Double getY() {
         return y;
     }
 
-    public double getR() {
+    public Double getR() {
         return r;
     }
 
@@ -40,15 +40,15 @@ public class Data implements Serializable {
         return scriptTime;
     }
 
-    public void setX(double x) {
+    public void setX(Double x) {
         this.x = x;
     }
 
-    public void setY(double y) {
+    public void setY(Double y) {
         this.y = y;
     }
 
-    public void setR(double r) {
+    public void setR(Double r) {
         this.r = r;
     }
 
@@ -73,12 +73,44 @@ public class Data implements Serializable {
     }
 
     private boolean circle(double x, double y, double r) {
-        return x >= 0 && x <= r && y <= 0 && y * y >= -x * x + r * r;
+        return x >= 0 && x <= r && y <= 0 && y * y <= -x * x + r * r;
     }
 
     public void checkAll() {
         if (rectangle(x, y, r) || triangle(x, y, r) || circle(x, y, r)) {
             answer = "да";
         } else answer = "нет";
+    }
+
+    @Override
+    public String toString() {
+        return "Data{" +
+                "x=" + x +
+                ", y=" + y +
+                ", r=" + r +
+                ", time=" + time +
+                ", scriptTime=" + scriptTime +
+                ", answer=" + answer +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return x.hashCode() + y.hashCode() +
+                r.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj instanceof Data) {
+            Data dataObj = (Data) obj;
+            return x.equals(dataObj.getX()) &&
+                    y.equals(dataObj.getY()) &&
+                    r.equals(dataObj.getR()) &&
+                    time.equals(dataObj.getTime()) &&
+                    answer.equals(dataObj.getAnswer());
+        }
+        return false;
     }
 }

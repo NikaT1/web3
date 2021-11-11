@@ -6,11 +6,15 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:panelGroup>
+    <h:panelGroup id="panel">
         <h:dataTable styleClass="result-table" value="#{dataBeans.array}" var="data" width="100%">
             <h:column>
                 <f:facet name="header">Время</f:facet>
-                0
+                #{data.time}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Время выполнения</f:facet>
+                #{data.scriptTime}
             </h:column>
             <h:column>
                 <f:facet name="header">X</f:facet>

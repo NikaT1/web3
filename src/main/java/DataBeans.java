@@ -6,7 +6,11 @@ import javax.persistence.Persistence;
 import javax.persistence.EntityTransaction;
 import java.io.IOException;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DataBeans implements Serializable {
@@ -20,7 +24,8 @@ public class DataBeans implements Serializable {
     public DataBeans() throws IOException {
         connectToDB();
         firstLoad();
-        newData = new Data();;
+        newData = new Data();
+        ;
     }
 
     private void connectToDB() {
@@ -46,8 +51,17 @@ public class DataBeans implements Serializable {
 
     public void addData() throws IOException {
         try {
+            long start = System.nanoTime();
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+            String time = formatter.format(new Date(System.currentTimeMillis()));
             trans.begin();
             newData.checkAll();
+            newData.setTime(time);
+            double scriptTime = (System.nanoTime() - start) * Math.pow(10, -6);
+            BigDecimal bd = new BigDecimal(Double.toString(scriptTime));
+            bd = bd.setScale(3, RoundingMode.HALF_UP);
+            scriptTime = bd.doubleValue();
+            newData.setScriptTime(scriptTime);
             entityManager.persist(newData);
             array.add(newData);
             newData = new Data();

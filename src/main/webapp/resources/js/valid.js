@@ -23,8 +23,8 @@ $(function () {
         if (checkR()) {
             param_x = (e.offsetX - 100) / 80 * param_r;
             param_y = (100 - e.offsetY) / 80 * param_r;
-            document.getElementById('main-f:inputY').value = String(param_y).substr(0,4);
-            document.getElementById("main-f:inputX").value = String(param_x).substr(0,4);
+            document.getElementById('main-f:inputY').value = param_y.toString().substr(0, 4);
+            document.getElementById("main-f:inputX").value = param_x.toString().substr(0, 4);
             document.getElementById("main-f:submit").click();
         } else {
             alert('Не выбран радиус R!');
@@ -34,7 +34,9 @@ $(function () {
     document.getElementById("main-f:inputR").addEventListener('change', function () {
         let x, y, r;
         checkR();
-        document.querySelectorAll('.coord').forEach(point => {
+        deletePoints();
+        drawAll();
+        /*document.querySelectorAll('.coord').forEach(point => {
             x = point.getAttribute('data-x');
             y = point.getAttribute('data-y');
             r = point.getAttribute('data-r');
@@ -49,7 +51,7 @@ $(function () {
             }
             point.setAttribute('cx', x + 'px');
             point.setAttribute('cy', y + 'px');
-        });
+        });*/
     });
 
     function init() {
@@ -62,10 +64,9 @@ $(function () {
     }
 
     function checkX() {
-        let arrayX = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
         let x = document.getElementById("main-f:inputX").value;
-        if (!isNaN(parseInt(x)) && isFinite(parseInt(x)) && arrayX.includes(parseInt(x))) {
-            param_x = parseInt(x);
+        if (!isNaN(parseFloat(x)) && isFinite(parseFloat(x))) {
+            param_x = parseFloat(x);
             return true;
         } else return false;
     }
@@ -88,7 +89,9 @@ $(function () {
         const MAX = 5;
         const MIN = -3;
         if (OK && !isNaN(parseFloat(line)) && isFinite(parseFloat(line)) && parseFloat(line) > MIN && parseFloat(line) < MAX) {
-            param_y = parseFloat(line.substr(0,3));
+            param_y = parseFloat(line.substr(0, 6));
+            console.log(param_y);
+            if (param_y === -0.0) param_y = 0.0;
             return true;
         } else {
             document.getElementById('main-f:inputY').classList.add('errorY');
@@ -100,6 +103,10 @@ $(function () {
         return checkY() && checkX() && checkR();
     }
 
+    function checkAnswer() {
+        return rectangle() || triangle() || circle();
+    }
+
     function rectangle() {
         return param_x <= 0 && param_x >= -param_r && param_y <= 0 && param_y >= -param_r;
     }
@@ -109,37 +116,59 @@ $(function () {
     }
 
     function circle() {
-        return param_x >= 0 && param_x <= param_r && param_y <= 0 && param_y * param_y >= -param_x * param_x + param_r * param_r;
+        return param_x >= 0 && param_x <= param_r && param_y <= 0 && param_y * param_y <= -param_x * param_x + param_r * param_r;
     }
 
     function drawAll() {
-        //ggggfffffgggggggggg
+        $(".result-table tbody tr").each(function () {
+            const x = parseFloat($(this).find("td:nth-child(3)").text());
+            const y = parseFloat($(this).find("td:nth-child(4)").text());
+            const r = parseFloat($(this).find("td:nth-child(5)").text());
+            const ans = $(this).find("td:nth-child(6)").text();
+            let flagForR;
+            let flagForColor;
+            if (!isNaN(x) && !isNaN(y)) {
+                flagForColor = ans.includes("да");
+                if (param_r) {
+                    flagForR = (param_r == r);
+                    drawPoint(x, y, param_r, flagForColor, flagForR);
+                } else {
+                    flagForR = (1 == r);
+                    drawPoint(x, y, 1, flagForColor, flagForR);
+                }
+            }
+        });
     }
 
-    function drawPoint() {
-        let point = document.createElementNS("http://www.w3.org/2000/svg",'circle');
-        point.setAttribute('cx', param_r/80*param_x+100);
-        point.setAttribute('cy', -param_r/80*param_y+100);
-        point.setAttribute('r', 3);
-        point.setAttribute('data-x', param_x);
-        point.setAttribute('data-y', param_y);
-        if (rectangle() || triangle() || circle())
+
+    function drawPoint(x, y, r, flagForColor, flagForR) {
+        let point = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+        point.setAttribute('cx', (80 * x / r + 100).toString());
+        point.setAttribute('cy', (-80 * y / r + 100).toString());
+        point.setAttribute('r', 3 .toString());
+        point.setAttribute('data-x', x);
+        point.setAttribute('data-y', y);
+        if (!flagForR) point.classList.add("old-coord");
+        else if (flagForColor)
             point.classList.add("good-coord");
         else point.classList.add("bad-coord");
         document.getElementById("svg").appendChild(point);
     }
 
-    document.getElementById("main-f:reset").addEventListener('click', function (e) {
+    function deletePoints() {
         document.querySelectorAll(".good-coord").forEach(x => x.remove());
         document.querySelectorAll(".bad-coord").forEach(x => x.remove());
         document.querySelectorAll(".old-coord").forEach(x => x.remove());
+    }
+
+    document.getElementById("main-f:reset").addEventListener('click', function (e) {
+        deletePoints();
     });
 
     document.getElementById("main-f:submit").addEventListener('click', function (e) {
+        e.preventDefault();
         if (checkAll()) {
-            drawPoint();
-        } else {
-            e.preventDefault();
+            drawPoint(param_x, param_y, param_r, checkAnswer(), true);
         }
     });
     init();
